@@ -1,4 +1,4 @@
-package com.wang1024;
+package com.wang1024.twoSum;
 
 import java.util.HashMap;
 /*
@@ -31,6 +31,7 @@ public class TwoSum {
         }
 
         throw  new IllegalArgumentException("no solution");
+
 
 
     }
