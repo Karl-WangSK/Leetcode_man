@@ -4,6 +4,7 @@ package com.wang1024.sort_color;
  * @return
  */
 public class Sort_color {
+
     public static void sort(int[] nums) {
         int curr = 0;
         int p0 = 0;
