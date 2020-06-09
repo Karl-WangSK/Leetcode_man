@@ -7,11 +7,12 @@ public class Decode_ways {
         int current = 1;
         int previous = 1;
         int temp = 0;
-        //34234234
+        //110
         for (int i = 1; i < s.length(); i++) {
             temp = current;
             if (s.charAt(i) == '0') {
                 if (s.charAt(i-1) != '1' && s.charAt(i-1) != '2') return 0;
+                else current=previous;
             } else if(s.charAt(i-1) == '1' ||
                     (s.charAt(i-1) == '2' && s.charAt(i) >= '1' && s.charAt(i) <= '6') ){
                 current=previous+current;
