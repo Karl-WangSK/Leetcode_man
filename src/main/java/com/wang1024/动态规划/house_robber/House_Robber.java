@@ -1,4 +1,4 @@
-package com.wang1024.house_robber;
+package com.wang1024.动态规划.house_robber;
 
 public class House_Robber {
 
