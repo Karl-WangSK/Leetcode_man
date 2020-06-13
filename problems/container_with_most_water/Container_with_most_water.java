@@ -1,4 +1,4 @@
-package com.wang1024.container_with_most_water;
+package container_with_most_water;
 
 
 public class Container_with_most_water {
