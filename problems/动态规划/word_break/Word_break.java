@@ -1,4 +1,4 @@
-package com.wang1024.动态规划.word_break;
+package 动态规划.word_break;
 
 import java.util.ArrayList;
 import java.util.HashSet;
