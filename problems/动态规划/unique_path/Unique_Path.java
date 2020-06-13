@@ -1,4 +1,4 @@
-package com.wang1024.动态规划.unique_path;
+package 动态规划.unique_path;
 
 public class Unique_Path {
 
@@ -13,6 +13,7 @@ public class Unique_Path {
         }
         return  path[m-1][n-1];
     }
+
 
     public static void main(String[] args) {
         int cnt = path(3, 4);
