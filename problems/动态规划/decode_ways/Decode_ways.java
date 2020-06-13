@@ -1,4 +1,4 @@
-package com.wang1024.动态规划.decode_ways;
+package 动态规划.decode_ways;
 
 public class Decode_ways {
 
