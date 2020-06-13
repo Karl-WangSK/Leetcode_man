@@ -1,4 +1,4 @@
-package com.wang1024.动态规划.cook_order;
+package com.wang1024.贪心算法.cook_order;
 
 import java.util.Arrays;
 
