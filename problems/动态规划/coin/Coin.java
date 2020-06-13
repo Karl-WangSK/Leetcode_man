@@ -1,4 +1,4 @@
-package com.wang1024.动态规划.coin;
+package 动态规划.coin;
 
 public class Coin {
     public  static int coin(int n){
