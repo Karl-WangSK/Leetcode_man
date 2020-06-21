@@ -3,7 +3,6 @@ package 深度优先.island_area;
 
 public class Island_area {
 
-
     static int  dfs(int[][] grid,int r,int c,int temp){
         int rn=grid.length;
         int cn=grid[0].length;
@@ -32,7 +31,7 @@ public class Island_area {
             for (int j = 0; j < c; j++) {
 
                 if (grid[i][j]==1){
-                    temp=dfs(grid,i,j,temp);
+                    temp =dfs(grid,i,j,temp);
                     max_area= Math.max(max_area,temp);
                     temp=0;
                 }
