@@ -1,4 +1,4 @@
-package container_with_most_water;
+package simple.container_with_most_water;
 
 
 public class Container_with_most_water {

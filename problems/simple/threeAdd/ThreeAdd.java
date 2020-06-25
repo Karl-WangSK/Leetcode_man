@@ -1,4 +1,4 @@
-package threeAdd;
+package simple.threeAdd;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package lengthOfLongestSubstring;
+package simple.lengthOfLongestSubstring;
 
 import java.util.HashSet;
 

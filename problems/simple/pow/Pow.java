@@ -1,4 +1,4 @@
-package pow;
+package simple.pow;
 
 public class Pow {
 

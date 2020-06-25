@@ -1,4 +1,4 @@
-package sort_color;
+package simple.sort_color;
 /*
  * @author Karl Wang
  * @return

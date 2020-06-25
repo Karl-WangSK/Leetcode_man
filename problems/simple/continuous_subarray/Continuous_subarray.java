@@ -1,4 +1,4 @@
-package continuous_subarray;
+package simple.continuous_subarray;
 
 import java.util.HashMap;
 

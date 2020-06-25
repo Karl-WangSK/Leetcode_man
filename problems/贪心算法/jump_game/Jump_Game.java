@@ -1,4 +1,4 @@
-package jump_game;
+package 贪心算法.jump_game;
 
 /*
  * @author Karl Wang

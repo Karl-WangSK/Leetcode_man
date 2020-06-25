@@ -1,4 +1,4 @@
-package swap_nodes;
+package simple.swap_nodes;
 
 
 import twoAdd.ListNode;

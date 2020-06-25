@@ -1,4 +1,4 @@
-package MergeTwoSortedLists;
+package simple.MergeTwoSortedLists;
 
 import twoAdd.ListNode;
 

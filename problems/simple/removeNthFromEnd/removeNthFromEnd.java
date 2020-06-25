@@ -1,4 +1,4 @@
-package removeNthFromEnd;
+package simple.removeNthFromEnd;
 
 
 import twoAdd.ListNode;
