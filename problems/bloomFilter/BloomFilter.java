@@ -3,7 +3,7 @@ package bloomFilter;
 import java.util.BitSet;
 
 public class BloomFilter {
-    private static final int SIZE = 1<<24;
+    private static final int SIZE = 1<<10;
     BitSet bitSet=new BitSet(SIZE);
     Hash[] hashs=new Hash[8];
     private static final int seeds[]=new int[]{3,5,7,9,11,13,17,19};
@@ -48,7 +48,8 @@ public class BloomFilter {
         System.out.println(email+"是否在列表中： "+bloomDemo.contains(email));
         bloomDemo.add(email);
         System.out.println(email+"是否在列表中： "+bloomDemo.contains(email));
-        email="wskqing@qq.com";
+        email="wsk@qq.com";
         System.out.println(email+"是否在列表中： "+bloomDemo.contains(email));
+        System.out.println(1<<10);
     }
 }
