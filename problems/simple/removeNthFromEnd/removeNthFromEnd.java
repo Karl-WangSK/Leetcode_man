@@ -3,7 +3,6 @@ package simple.removeNthFromEnd;
 
 import simple.twoAdd.ListNode;
 
-
 public class removeNthFromEnd {
 
     public static ListNode findNth(ListNode head, int n) {
