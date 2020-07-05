@@ -1,7 +1,7 @@
 package simple.swap_nodes;
 
 
-import twoAdd.ListNode;
+import simple.twoAdd.ListNode;
 
 public class Swap_nodes_in_pairs {
 

@@ -1,4 +1,4 @@
-package twoAdd;
+package simple.twoAdd;
 
 public class ListNode {
     public int val;

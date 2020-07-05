@@ -1,7 +1,7 @@
 package simple.removeNthFromEnd;
 
 
-import twoAdd.ListNode;
+import simple.twoAdd.ListNode;
 
 
 public class removeNthFromEnd {
