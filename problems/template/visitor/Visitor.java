@@ -1,4 +1,7 @@
 package template.visitor;
 
-public class Visitor {
+public interface Visitor {
+
+    public void visit(ShangHai shangHai);
+    public void visit(BeiJing beiJing);
 }
