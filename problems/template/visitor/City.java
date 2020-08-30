@@ -1,5 +1,20 @@
 package template.visitor;
 
-public interface City {
-    public  void accept(Visitor visitor);
+import java.io.Serializable;
+
+public abstract class City implements Serializable{
+    public String name;
+
+
+    public City(String city){
+        name=city;
+    }
+
+    public City(City city){
+        name=city.name;
+    }
+
+    public void accept(Visitor visitor) {
+
+    }
 }

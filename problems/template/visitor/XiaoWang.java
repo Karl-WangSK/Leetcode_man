@@ -2,18 +2,19 @@ package template.visitor;
 
 public class XiaoWang implements Visitor {
 
-    public void visit(ShangHai shangHai) {
-        System.out.println("小王来上海了");
+    public void visitShanghai(ShangHai shangHai,String name) {
+        System.out.println("小王从"+name+"来"+shangHai.name+"了");
+        shangHai.accept(this);
+
     }
 
-    public void visit(BeiJing beiJing) {
-        System.out.println("小王来北京了");
+    public void visitBeijing(BeiJing beiJing,String name) {
+        System.out.println("小王从"+name+"来"+beiJing.name+"了");
     }
 
     public static void main(String[] args) {
         XiaoWang xiaoWang = new XiaoWang();
-        ShangHai shangHai = new ShangHai();
-        shangHai.accept(xiaoWang);
+        xiaoWang.visitShanghai(new ShangHai("上海"),"温州");
 
     }
 }

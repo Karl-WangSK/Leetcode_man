@@ -1,7 +1,12 @@
 package template.visitor;
 
-public class BeiJing implements City {
+public class BeiJing extends City {
+
+    public BeiJing(String city){
+        super(city);
+    }
+
     public void accept(Visitor visitor) {
-        visitor.visit(this);
+        visitor.visitBeijing(this,name);
     }
 }
