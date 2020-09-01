@@ -2,8 +2,12 @@ package template.visitor;
 
 import java.io.Serializable;
 
-public interface  City {
+public abstract class City implements Serializable{
     public String name;
 
-    public void accept(Visitor visitor);
+    public City(String name){
+        this.name=name;
+    }
+
+    abstract public void accept(Visitor visitor);
 }

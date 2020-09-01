@@ -1,10 +1,13 @@
 package template.visitor;
 
 public class ShangHai extends City {
-    protected String name="上海";
+
+    public ShangHai(String name) {
+        super(name);
+    }
 
     public void accept(Visitor visitor) {
-        BeiJing beiJing = new BeiJing();
+        BeiJing beiJing = new BeiJing("七里屯");
         visitor.visitShanghai(this, beiJing);
     }
 }
