@@ -9,8 +9,6 @@ class Atomic {
   // context as having started construction.
   // NOTE: this must be placed at the beginning of the Contexts constructor.
   Atomic.setActiveContext(this, allowMultipleContexts)
-
-
 }
 
 object Atomic{
