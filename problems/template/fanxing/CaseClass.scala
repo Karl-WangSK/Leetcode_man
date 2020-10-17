@@ -21,7 +21,6 @@ class CaseClass extends generic {
 
 
   override def trans[T, U](s: Father[T], a: Father[U]): Unit = {
-
     s match {
       case dd @ Test(id:String,list:List[T])  =>
         println(dd.list(0))
@@ -31,8 +30,6 @@ class CaseClass extends generic {
 
       case _ => println("")
     }
-
-
   }
 }
 
