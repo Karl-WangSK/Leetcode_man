@@ -4,15 +4,21 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.*;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 
 public class NettyClientHandler extends ChannelHandlerAdapter {
-    private ByteBuf firstMessage;
+    private static final Logger logger = LoggerFactory.getLogger(NettyClientHandler.class);
+
+    private ChannelHandlerContext ctx;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        registerdMsg worker1 = new registerdMsg("sucess");
+        registerdMsg worker1 = new registerdMsg("success");
         ctx.writeAndFlush(worker1);
         System.err.println("客户端发送成功");
     }
@@ -24,6 +30,14 @@ public class NettyClientHandler extends ChannelHandlerAdapter {
         String rev = getMessage(buf);
         System.err.println("客户端收到服务器消息:" + rev);
     }
+
+    @Override
+    public void close(ChannelHandlerContext ctx, ChannelPromise promise) throws Exception {
+        System.err.println("客户端关闭成功");
+        registerdMsg worker1 = new registerdMsg("close");
+        ctx.writeAndFlush(worker1);
+    }
+
 
     private String getMessage(ByteBuf buf) {
         byte[] con = new byte[buf.readableBytes()];
@@ -46,4 +60,6 @@ public class NettyClientHandler extends ChannelHandlerAdapter {
         }
         System.out.println("heartbeat");
     }
+
+
 }

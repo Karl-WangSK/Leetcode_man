@@ -36,16 +36,18 @@ public class NettyServer {
                 protected void initChannel(SocketChannel socketChannel)
                         throws Exception {
                     ChannelPipeline p = socketChannel.pipeline();
-                    p.addLast(new IdleStateHandler(5, 0, 5, TimeUnit.SECONDS));
+                    p.addLast(new IdleStateHandler(10, 0, 10, TimeUnit.SECONDS));
                     p.addLast(new LengthFieldBasedFrameDecoder(10240, 0, 4, 0, 4));
                     p.addLast(new ProtostuffDecoder());
                     p.addLast(new NettyServerHandler());// 添加NettyServerHandler，用来处理Server端接收和处理消息的逻辑
+
                 }
             });
             ChannelFuture channelFuture = bootstrap.bind(port).sync();
             if (channelFuture.isSuccess()) {
                 System.err.println("启动Netty服务成功，端口号：" + this.port);
             }
+            Test.test();
             // 关闭连接
             channelFuture.channel().closeFuture().sync();
 

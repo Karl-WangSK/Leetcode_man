@@ -54,13 +54,18 @@ public class NettyClient {
             if (channelFuture.isSuccess()) {
                 System.err.println("连接服务器成功");
             }
-            channelFuture.channel().closeFuture().sync();
+
+            Thread.sleep(10000);
+            channelFuture.channel().close();
+//            channelFuture.channel().closeFuture().sync();
         } finally {
             eventLoopGroup.shutdownGracefully();
         }
     }
 
+
     public static void main(String[] args) throws InterruptedException {
-        new NettyClient(10086, "localhost");
+        NettyClient client = new NettyClient(10086, "localhost");
+
     }
 }
