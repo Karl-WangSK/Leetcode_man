@@ -42,7 +42,7 @@ public class NettyClient {
             bootstrap.handler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel socketChannel)
-                        throws Exception {
+                                throws Exception {
                     ChannelPipeline pipeline = socketChannel.pipeline();
                     pipeline.addLast(new IdleStateHandler(0, 5, 5, TimeUnit.SECONDS));
                     pipeline.addLast(new LengthFieldPrepender(4));
@@ -50,14 +50,14 @@ public class NettyClient {
                     pipeline.addLast(new NettyClientHandler());
                 }
             });
-            ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
-            if (channelFuture.isSuccess()) {
-                System.err.println("连接服务器成功");
-            }
-
-            Thread.sleep(10000);
-            channelFuture.channel().close();
-//            channelFuture.channel().closeFuture().sync();
+            Channel channel = bootstrap.connect(host, port).sync().channel();
+//            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+//            while(true){
+//                channel.writeAndFlush(new registerdMsg(in.readLine()));
+//            }
+            Thread.sleep(5000);
+            channel.close();
+//      ClientJob.test();
         } finally {
             eventLoopGroup.shutdownGracefully();
         }
