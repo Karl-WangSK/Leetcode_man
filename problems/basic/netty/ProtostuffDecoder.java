@@ -1,4 +1,4 @@
-package netty;
+package basic.netty;
 
 import com.dyuproject.protostuff.ProtobufIOUtil;
 import com.dyuproject.protostuff.Schema;

@@ -1,4 +1,4 @@
-package netty;
+package basic.netty;
 
 
 import io.netty.bootstrap.ServerBootstrap;

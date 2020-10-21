@@ -1,4 +1,4 @@
-package netty;
+package basic.netty;
 
 import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtobufIOUtil;
