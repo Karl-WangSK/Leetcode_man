@@ -1,4 +1,4 @@
-package netty
+package basic.netty
 
 trait RpcMsg extends Serializable
 
