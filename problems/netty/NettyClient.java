@@ -6,6 +6,9 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldPrepender;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
 
 import java.util.concurrent.TimeUnit;
@@ -44,9 +47,12 @@ public class NettyClient {
                 protected void initChannel(SocketChannel socketChannel)
                                 throws Exception {
                     ChannelPipeline pipeline = socketChannel.pipeline();
-                    pipeline.addLast(new IdleStateHandler(0, 5, 5, TimeUnit.SECONDS));
-                    pipeline.addLast(new LengthFieldPrepender(4));
-                    pipeline.addLast(new ProtostuffEncoder());
+//                    pipeline.addLast(new IdleStateHandler(0, 5, 5, TimeUnit.SECONDS));
+//                    pipeline.addLast(new LengthFieldPrepender(4));
+//                    pipeline.addLast(new ProtostuffEncoder());
+                    pipeline.addLast(new ObjectEncoder());
+                    pipeline.addLast(new ObjectDecoder(Integer.MAX_VALUE,
+                                    ClassResolvers.cacheDisabled(null)));
                     pipeline.addLast(new NettyClientHandler());
                 }
             });
@@ -55,7 +61,8 @@ public class NettyClient {
 //            while(true){
 //                channel.writeAndFlush(new registerdMsg(in.readLine()));
 //            }
-            Thread.sleep(5000);
+            ClientJob.test();
+            Thread.sleep(50000);
             channel.close();
 //      ClientJob.test();
         } finally {

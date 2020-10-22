@@ -13,7 +13,7 @@ import java.net.SocketAddress;
 
 import static java.lang.Thread.sleep;
 
-public class NettyClientHandler extends ChannelHandlerAdapter {
+public class NettyClientHandler extends ChannelInboundHandlerAdapter implements ChannelOutboundHandler {
     private static final Logger logger = LoggerFactory.getLogger(NettyClientHandler.class);
 
 
@@ -26,21 +26,13 @@ public class NettyClientHandler extends ChannelHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws InterruptedException {
-        ByteBuf buf = (ByteBuf) msg;
-        String rev = getMessage(buf);
-        if (rev.equals("开始吧")){
+        RpcMsg event = (RpcMsg) msg;
+        if (event instanceof registerdMsg){
             System.out.println("开始了！！！");
             Thread.sleep(3000);
             ClientJob.canStart= true;
         }
-        System.err.println("客户端收到服务器消息:" + rev);
-    }
-
-    @Override
-    public void close(ChannelHandlerContext ctx, ChannelPromise promise) throws Exception {
-        System.err.println("客户端关闭成功");
-        registerdMsg worker1 = new registerdMsg("close");
-        ctx.writeAndFlush(worker1);
+        System.err.println("客户端收到服务器消息:" + event);
     }
 
 
@@ -49,11 +41,10 @@ public class NettyClientHandler extends ChannelHandlerAdapter {
         if (evt instanceof IdleStateEvent){
             IdleStateEvent event = (IdleStateEvent)evt;
             if (event.state()== IdleState.WRITER_IDLE){
-                registerdMsg worker1 = new registerdMsg("worker1");
-                ctx.writeAndFlush(worker1);
+                HeartBeat heartBeat = new HeartBeat();
+                ctx.writeAndFlush(heartBeat);
             }
         }
-        System.out.println("heartbeat");
     }
 
     private String getMessage(ByteBuf buf) {
@@ -67,5 +58,46 @@ public class NettyClientHandler extends ChannelHandlerAdapter {
         }
     }
 
+    @Override
+    public void close(ChannelHandlerContext channelHandlerContext, ChannelPromise channelPromise) throws Exception {
+        System.err.println("客户端关闭成功");
+        ShutDown shutDown = new ShutDown();
+        channelHandlerContext.writeAndFlush(shutDown);
+    }
 
+
+    @Override
+    public void bind(ChannelHandlerContext channelHandlerContext, SocketAddress socketAddress, ChannelPromise channelPromise) throws Exception {
+        channelHandlerContext.bind(socketAddress, channelPromise);
+    }
+
+    @Override
+    public void connect(ChannelHandlerContext channelHandlerContext, SocketAddress socketAddress, SocketAddress socketAddress1, ChannelPromise channelPromise) throws Exception {
+        channelHandlerContext.connect(socketAddress, socketAddress1, channelPromise);
+    }
+
+    @Override
+    public void disconnect(ChannelHandlerContext channelHandlerContext, ChannelPromise channelPromise) throws Exception {
+        channelHandlerContext.disconnect(channelPromise);
+    }
+
+    @Override
+    public void deregister(ChannelHandlerContext channelHandlerContext, ChannelPromise channelPromise) throws Exception {
+        channelHandlerContext.deregister(channelPromise);
+    }
+
+    @Override
+    public void read(ChannelHandlerContext channelHandlerContext) throws Exception {
+        channelHandlerContext.read();
+    }
+
+    @Override
+    public void write(ChannelHandlerContext channelHandlerContext, Object o, ChannelPromise channelPromise) throws Exception {
+        channelHandlerContext.write(o,channelPromise);
+    }
+
+    @Override
+    public void flush(ChannelHandlerContext channelHandlerContext) throws Exception {
+        channelHandlerContext.flush();
+    }
 }

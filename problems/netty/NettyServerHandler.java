@@ -3,17 +3,14 @@ package netty;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
-import io.netty.handler.timeout.IdleState;
-import io.netty.handler.timeout.IdleStateEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 
-public class NettyServerHandler extends ChannelHandlerAdapter {
+public class NettyServerHandler extends ChannelInboundHandlerAdapter {
     private static final Logger logger = LoggerFactory.getLogger(NettyServerHandler.class);
-    private static int missingTime = 0;
     public static Boolean flag = true;
 
     @Override
@@ -21,16 +18,19 @@ public class NettyServerHandler extends ChannelHandlerAdapter {
         InetSocketAddress socketAddress = (InetSocketAddress) ctx.channel().remoteAddress();
         String hostAddress = socketAddress.getAddress().getHostAddress();
         System.out.println(hostAddress + socketAddress.getPort());
-        registerdMsg info = (registerdMsg) msg;
+        RpcMsg info = (RpcMsg) msg;
+
         try {
-            if (info.getInfo().equals("success")) {
+            if (info instanceof registerdMsg) {
                 synchronized (Test.isrunning) {
                     flag = false;
                     Test.isrunning.wait();
-                    ctx.writeAndFlush(getSendByteBuf("开始吧"));
+                    ctx.writeAndFlush(new registerdMsg("开始吧"));
                     System.err.println("服务器接收到客户端消息：" + info.toString());
                 }
-            } else if (info.getInfo().equals("close")) {
+            } else if (info instanceof HeartBeat) {
+                System.out.println("heart beat");
+            }else if (info instanceof ShutDown) {
                 synchronized (Test.lock) {
                     System.err.println("解锁");
                     flag = true;
@@ -39,7 +39,7 @@ public class NettyServerHandler extends ChannelHandlerAdapter {
                 }
             }
 
-        } catch (UnsupportedEncodingException | InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
