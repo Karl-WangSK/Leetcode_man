@@ -1,4 +1,4 @@
-package bloomFilter;
+package basic.bloomFilter;
 
 import java.util.BitSet;
 

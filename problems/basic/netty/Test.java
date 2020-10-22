@@ -1,4 +1,4 @@
-package netty;
+package basic.netty;
 
 public class Test {
     public static final Object lock= new Object();

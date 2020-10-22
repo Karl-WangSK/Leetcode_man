@@ -1,4 +1,4 @@
-package netty;
+package basic.netty;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.*;
@@ -8,8 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 
 import static java.lang.Thread.sleep;
 
