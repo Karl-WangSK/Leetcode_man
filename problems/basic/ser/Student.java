@@ -1,4 +1,4 @@
-package basic.serializable;
+package basic.ser;
 
 public class Student {
   private String name;
