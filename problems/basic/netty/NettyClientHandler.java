@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
+import java.net.SocketAddress;
 
 import static java.lang.Thread.sleep;
 
@@ -66,12 +67,12 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter implements 
 
     @Override
     public void bind(ChannelHandlerContext channelHandlerContext, SocketAddress socketAddress, ChannelPromise channelPromise) throws Exception {
-        channelHandlerContext.bind(socketAddress, channelPromise);
+
     }
 
     @Override
     public void connect(ChannelHandlerContext channelHandlerContext, SocketAddress socketAddress, SocketAddress socketAddress1, ChannelPromise channelPromise) throws Exception {
-        channelHandlerContext.connect(socketAddress, socketAddress1, channelPromise);
+
     }
 
     @Override
