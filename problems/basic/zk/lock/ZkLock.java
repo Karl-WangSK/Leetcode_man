@@ -78,7 +78,8 @@ public class ZkLock {
                     Lock lock = tryActiveLock(lockNode);
                     synchronized (lockNode) {
                         if (lock.isActive()) {
-                            lockNode.notify(); // 释放了
+                            // 释放了
+                            lockNode.notify();
                         }
                     }
                     zkClient.unsubscribeDataChanges(upNodePath, this);
