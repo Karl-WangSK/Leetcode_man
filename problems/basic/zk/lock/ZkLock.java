@@ -67,9 +67,7 @@ public class ZkLock {
             String upNodePath = list.get(list.indexOf(lockNode.getPath()) - 1);
             zkClient.subscribeDataChanges(upNodePath, new IZkDataListener() {
                 @Override
-                public void handleDataChange(String dataPath, Object data) throws Exception {
-
-                }
+                public void handleDataChange(String dataPath, Object data) throws Exception { }
 
                 @Override
                 public void handleDataDeleted(String dataPath) throws Exception {
