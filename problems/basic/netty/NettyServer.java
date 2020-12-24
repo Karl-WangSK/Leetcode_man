@@ -54,7 +54,7 @@ public class NettyServer {
                 System.err.println("启动Netty服务成功，端口号：" + this.port);
             }
             Test.test();
-            // 关闭连接
+            // Close Connection
             channelFuture.channel().closeFuture().sync();
 
         } catch (Exception e) {
