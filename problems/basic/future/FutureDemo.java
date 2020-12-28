@@ -10,6 +10,10 @@ import java.util.stream.IntStream;
 
 public class FutureDemo {
     public static void main(String[] args) throws Exception {
+        singleThread();
+    }
+
+    public static void singleThread()  throws Exception {
         ExecutorService executor = Executors.newFixedThreadPool(2,
             r -> {
                 Thread t = new Thread(r, "async_compact_thread");
@@ -26,8 +30,7 @@ public class FutureDemo {
             e.printStackTrace();
             return null;
         });
-        // 主线程不要立刻结束，否则CompletableFuture默认使用的线程池会立刻关闭:
-        Thread.sleep(200);
+        System.out.println("finish");
         executor.shutdown();
     }
 
@@ -42,6 +45,7 @@ public class FutureDemo {
             .mapToObj(i -> CompletableFuture.supplyAsync(FutureDemo::fetchPrice, executor))
             .toArray(CompletableFuture[]::new));
         voidCompletableFuture.get();
+        executor.shutdown();
     }
 
 
