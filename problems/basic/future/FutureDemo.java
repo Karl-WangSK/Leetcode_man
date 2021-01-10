@@ -37,7 +37,7 @@ public class FutureDemo {
     public static void multiThread()  throws Exception {
         ExecutorService executor = Executors.newFixedThreadPool(2,
             r -> {
-                Thread t = new Thread(r, "async_compact_thread");
+                Thread t = new Thread(r, "Thead");
                 return t;
             });
 
