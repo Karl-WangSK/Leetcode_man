@@ -27,7 +27,6 @@ public class FutureDemo {
             e.printStackTrace();
             return null;
         });
-        System.out.println("finish");
         executor.shutdown();
     }
 
