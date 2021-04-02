@@ -66,6 +66,4 @@ object Atomic {
     val atomic = Atomic.getOrElse()
     val atomic2 = Atomic.getOrElse()
   }
-
-
 }
