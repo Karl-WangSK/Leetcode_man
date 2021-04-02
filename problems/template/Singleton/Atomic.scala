@@ -62,7 +62,6 @@ object Atomic {
     }
   }
 
-
   def main(args: Array[String]): Unit = {
     val atomic = Atomic.getOrElse()
     val atomic2 = Atomic.getOrElse()
